@@ -6,5 +6,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>lucee-freemarker-plugin</module>
+  	<module>lucee-freemarker-extension</module>
   </modules>
 </project>

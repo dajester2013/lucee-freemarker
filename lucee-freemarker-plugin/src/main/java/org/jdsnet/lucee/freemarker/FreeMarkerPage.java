@@ -19,7 +19,7 @@ public class FreeMarkerPage extends Page {
 	
 	@Override
 	public Object call(PageContext pc) throws Throwable {
-		this.template.process(pc.us(), pc.getOut());
+		this.template.process(new FreeMarkerScope(pc), pc.getOut());
 		return null;
 	}
 

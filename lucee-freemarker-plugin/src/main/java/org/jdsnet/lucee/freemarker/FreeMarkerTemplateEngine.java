@@ -8,6 +8,7 @@ import java.util.Map;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
+import lucee.runtime.config.Config;
 import lucee.runtime.template.TemplateEngine;
 import lucee.runtime.template.TemplatePageFactory;
 
@@ -17,7 +18,7 @@ public class FreeMarkerTemplateEngine extends TemplateEngine {
 	
 	private Map<String, Configuration> configMap;
 	
-	public FreeMarkerTemplateEngine() {
+	public FreeMarkerTemplateEngine(Config config) {
 		this.configMap = new HashMap<String, Configuration>();
 	}
 	

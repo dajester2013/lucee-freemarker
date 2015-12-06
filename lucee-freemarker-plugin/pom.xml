@@ -7,34 +7,51 @@
   </parent>
   <artifactId>lucee-freemarker-plugin</artifactId>
   <dependencies>
-  	<dependency>
-  		<groupId>org.lucee</groupId>
-  		<artifactId>lucee</artifactId>
-  		<version>5.0.0.136-SNAPSHOT</version>
-  		<scope>provided</scope>
-  	</dependency>
-  	<dependency>
-	  <groupId>org.freemarker</groupId>
-	  <artifactId>freemarker</artifactId>
-	  <version>2.3.23</version>
-	</dependency>
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>jsp-api</artifactId>
-		<version>2.0</version>
-  		<scope>provided</scope>
-	</dependency>
-
-		
+    <dependency>
+      <groupId>org.lucee</groupId>
+      <artifactId>lucee</artifactId>
+      <version>5.0.0.136-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.23</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>    
   </dependencies>
   
-  <!-- <build>
-  	<plugins>
-  	  
-  	  ensure the jar is built first
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <id>unpack-freemarker</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeGroupIds>org.freemarker</includeGroupIds>
+              <includeArtifactIds>freemarker</includeArtifactIds>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
+        <version>2.6</version>
         <executions>
           <execution>
             <id>default-jar</id>
@@ -42,55 +59,35 @@
             <goals>
               <goal>jar</goal>
             </goals>
+            <configuration>
+              <includes>
+                <include>**/**</include>
+              </includes>
+              <archive>
+                <manifestEntries>
+                  <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+                  <Bundle-Name>org.jdsnet.lucee.freemarker</Bundle-Name>
+                  <Bundle-SymbolicName>org.jdsnet.lucee.freemarker</Bundle-SymbolicName>
+                  <Bundle-Version>0.0.1</Bundle-Version>
+                  <Bundle-ClassPath>.</Bundle-ClassPath>
+                  <Bundle-Vendor>JDSNet</Bundle-Vendor>
+                  <Export-Package>org.jdsnet.lucee.freemarker</Export-Package>
+                </manifestEntries>
+              </archive>
+            </configuration>
           </execution>
         </executions>
       </plugin>
       
-      
-			...with the extension .lex instead
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<id>lexFile</id>
-						<phase>package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<target>
-								<move file="${jarFile}" tofile="${lexFile}" />
-							</target>
-						</configuration>
-					</execution>
-					
-					add OSGi bundle info to the JDBC driver's manifest
-					<execution>
-						<id>teiidOSGify</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<target>
-								<jar update="true" file="${project.build.directory}/${project.build.finalName}.jar">
-									<manifest>
-										<attribute name="Bundle-ManifestVersion"	value="2"/>
-										<attribute name="Bundle-Name"				value="org.jdsnet.lucee.freemarker" />
-										<attribute name="Bundle-SymbolicName"		value="org.jdsnet.lucee.freemarker" />
-										<attribute name="Bundle-Version"			value="${project.version}" />
-										<attribute name="Bundle-ClassPath"			value="." />
-										<attribute name="Bundle-Vendor"				value="JBoss" />
-										<attribute name="Export-Package"			value="org.teiid.client,org.teiid.client.lob,org.teiid.client.metadata,org.teiid.client.plan,org.teiid.client.security,org.teiid.client.util,org.teiid.client.xa,org.teiid.core,org.teiid.core.crypto,org.teiid.core.types,org.teiid.core.types.basic,org.teiid.core.util,org.teiid.gss,org.teiid.jdbc,org.teiid.net,org.teiid.net.socket,org.teiid.netty.handler.codec.serialization" />
-									</manifest>
-								</jar>
-							</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-      
-  	</plugins>
-  </build> -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

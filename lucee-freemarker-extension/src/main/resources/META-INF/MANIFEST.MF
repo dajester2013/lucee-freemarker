@@ -1,0 +1,12 @@
+id: "09087cf3-44ea-49e4-95b9522d522f6afe"
+name: "${project.name} ${project.version}"
+description: "${project.description}"
+version: "${project.version}"
+lucee-core-version: "5.0.0.136"
+category: "Template Engines"
+start-bundles: true
+templateEngine: "[{
+ 'label':'FreeMarker',
+ 'class':'org.jdsnet.lucee.freemarker.FreeMarkerTemplateEngine',
+ 'bundleName':'org.jdsnet.lucee.freemarker','bundleVersion':'${project.version}'
+ }]"

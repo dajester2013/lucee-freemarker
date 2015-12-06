@@ -1,7 +1,0 @@
-org\jdsnet\lucee\freemarker\DummyPageFactory.class
-org\jdsnet\lucee\freemarker\DummyTemplateEngine.class
-org\jdsnet\lucee\freemarker\FreeMarkerPage.class
-org\jdsnet\lucee\freemarker\FreeMarkerTemplateEngine.class
-org\jdsnet\lucee\freemarker\DummyPage.class
-org\jdsnet\lucee\freemarker\FreeMarkerPageFactory.class
-org\jdsnet\lucee\freemarker\ArchiveTemplateLoader.class
