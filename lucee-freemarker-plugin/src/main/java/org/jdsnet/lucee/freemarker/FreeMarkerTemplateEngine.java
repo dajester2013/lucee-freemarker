@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jdsnet.lucee.freemarker.object.Wrapper;
+
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
@@ -27,14 +29,12 @@ public class FreeMarkerTemplateEngine extends TemplateEngine {
 			Configuration cfg = new Configuration(FREEMARKER_TEMPLATE_VERSION);
 			
 			cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-			
-			System.out.println("create config for path " + path);
+			cfg.setObjectWrapper(new Wrapper(FREEMARKER_TEMPLATE_VERSION));
 			
 			if (!isArchive)
 				cfg.setDirectoryForTemplateLoading(new File(path));
 			else
 				cfg.setTemplateLoader(new ArchiveTemplateLoader(path));
-			// TODO: actually configure the thing
 			
 			configMap.put(path, cfg);
 		}

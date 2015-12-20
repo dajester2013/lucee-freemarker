@@ -18,7 +18,7 @@ public class ArchiveTemplateLoader extends URLTemplateLoader {
 		System.err.println("trying to load flt " + template);
 		URL url = null;
 		try {
-			url = new URL("jar:file:///" + archivePath + "!/" + "index.dummy");
+			url = new URL("jar:file:///" + archivePath + "!/" + template);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,7 +5,9 @@ import java.io.IOException;
 import freemarker.template.Configuration;
 import lucee.runtime.Mapping;
 import lucee.runtime.Page;
+import lucee.runtime.PageContext;
 import lucee.runtime.PageSource;
+import lucee.runtime.exp.PageException;
 import lucee.runtime.template.TemplatePageFactory;
 
 public class FreeMarkerPageFactory implements TemplatePageFactory {
@@ -16,7 +18,8 @@ public class FreeMarkerPageFactory implements TemplatePageFactory {
 		templateEngine = te;
 	}
 	
-	public Page getPage(PageSource ps) {
+	@Override
+	public Page getPage(PageContext pc, PageSource ps, boolean forceReload, Page defaultValue) throws PageException {
 		Mapping m = ps.getMapping();
 		
 		boolean isArchive = m.hasArchive() && (!m.isPhysicalFirst() || !m.hasPhysical());
