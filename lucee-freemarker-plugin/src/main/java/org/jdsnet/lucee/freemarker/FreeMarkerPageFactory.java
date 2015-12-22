@@ -31,7 +31,9 @@ public class FreeMarkerPageFactory implements TemplatePageFactory {
 		
 		try {
 			Configuration cfg = templateEngine.getConfiguration(root, isArchive);
-			return new FreeMarkerPage(cfg.getTemplate(ps.getRealpath()));
+			FreeMarkerPage p = new FreeMarkerPage(cfg.getTemplate(ps.getRealpath()));
+			p.setPageSource(ps);
+			return p;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
