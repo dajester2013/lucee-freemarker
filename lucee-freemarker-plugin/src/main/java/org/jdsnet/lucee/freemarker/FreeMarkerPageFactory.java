@@ -8,13 +8,13 @@ import lucee.runtime.Page;
 import lucee.runtime.PageContext;
 import lucee.runtime.PageSource;
 import lucee.runtime.exp.PageException;
-import lucee.runtime.template.TemplatePageFactory;
+import lucee.runtime.page.engine.PageFactory;
 
-public class FreeMarkerPageFactory implements TemplatePageFactory {
+public class FreeMarkerPageFactory implements PageFactory {
 	
-	private FreeMarkerTemplateEngine templateEngine;
+	private FreeMarkerPageEngine templateEngine;
 	
-	public FreeMarkerPageFactory(FreeMarkerTemplateEngine te) {
+	public FreeMarkerPageFactory(FreeMarkerPageEngine te) {
 		templateEngine = te;
 	}
 	

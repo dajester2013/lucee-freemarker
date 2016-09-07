@@ -10,17 +10,18 @@ import org.jdsnet.lucee.freemarker.object.Wrapper;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
+import lucee.loader.engine.CFMLEngine;
 import lucee.runtime.config.Config;
-import lucee.runtime.template.TemplateEngine;
-import lucee.runtime.template.TemplatePageFactory;
+import lucee.runtime.page.engine.PageEngine;
+import lucee.runtime.page.engine.PageFactory;
 
-public class FreeMarkerTemplateEngine extends TemplateEngine {
+public class FreeMarkerPageEngine extends PageEngine {
 	
 	public static final Version FREEMARKER_TEMPLATE_VERSION = Configuration.VERSION_2_3_23;
 	
 	private Map<String, Configuration> configMap;
 	
-	public FreeMarkerTemplateEngine(Config config) {
+	public FreeMarkerPageEngine(Config config) {
 		this.configMap = new HashMap<String, Configuration>();
 	}
 	
@@ -43,8 +44,13 @@ public class FreeMarkerTemplateEngine extends TemplateEngine {
 	}
 	
 	@Override
-	public TemplatePageFactory getPageFactory() {
+	public PageFactory getPageFactory() {
 		return new FreeMarkerPageFactory(this);
+	}
+	
+	@Override
+	public int getDialect() {
+		return CFMLEngine.DIALECT_BOTH;
 	}
 
 }
